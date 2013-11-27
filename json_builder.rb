@@ -4,17 +4,14 @@ $TYPE = ["JsonBuilder::JObject",
          "JsonBuilder::JString",
          "JsonBuilder::JNum",
          "JsonBuilder::JSpecialValue"]
-$TYPE_NUM          = 5
 $MAX_RANDOM_LENGTH = 4
-$MAX_RANDOM        = 300
+$MAX_RANDOM_NUM    = 300
 
 class JObject
   def initialize
     @pairs = []
     times = Random.rand($MAX_RANDOM_LENGTH)
-    for i in 1..times do
-      self.add_random
-    end
+    1.upto(times) { |i| self.add_random }
   end
 
   def rand_valid_key
@@ -22,7 +19,7 @@ class JObject
   end
 
   def rand_valid_value
-    type_no = Random.rand($TYPE_NUM)
+    type_no = Random.rand($TYPE.size)
     return Kernel.const_get($TYPE[type_no]).new
   end
 
@@ -43,13 +40,11 @@ class JArray
   def initialize
     @arrs = []
     times = Random.rand($MAX_RANDOM_LENGTH)
-    for i in 1..times do
-      self.add_random
-    end
+    1.upto(times) { |i| self.add_random }
   end
 
   def add_random
-    type_no = Random.rand($TYPE_NUM)
+    type_no = Random.rand($TYPE.size)
     @arrs << Kernel.const_get($TYPE[type_no]).new
     return self
   end
@@ -68,7 +63,8 @@ class JString
 
   def initialize
     @string = ""
-    1.upto($MAX_RANDOM_LENGTH) { |i| @string << @@chars[Random.rand(@@chars.size-1)] }
+    max_length = Random.rand($MAX_RANDOM_LENGTH)
+    1.upto(max_length) { |i| @string << @@chars[Random.rand(@@chars.size)] }
   end
 
   def to_j_s
@@ -104,7 +100,7 @@ end
 
 class JNum
   def initialize
-    @value = Random.rand($MAX_RANDOM)
+    @value = Random.rand($MAX_RANDOM_NUM)
   end
 
   def to_j_s
