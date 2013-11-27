@@ -1,0 +1,136 @@
+# ================syntax====================
+# syntax error : lack element
+false|
+false| null
+false| { : }
+false| { : 123}
+false| { "string" }
+false| { 123 }
+false| { "string" : }
+false| {,}
+false| [,]
+false| [123, ]
+false| {"string" : "string", }
+
+# syntax error : lack syntax
+# consider \[ \{ \[ \} as syntax error
+# ex: {"aaa" : {\} }
+false| {
+false| }
+false| [123
+false| 123]
+false| {"string" "string"}
+false| {"string" : [\]}
+
+# syntax error : syntax error
+false| {"string", "string"}
+false| ["string" : "string"]
+
+# ================string====================
+# string only
+false| "string"
+
+# special string
+true| ["\""]
+true| ["\\"]
+true| ["\/"]
+true| ["\b"]
+true| ["\f"]
+true| ["\n"]
+true| ["\t"]
+false| ["\u"]
+true| ["\u4032"]
+true| ["あ"]
+
+# ================number====================
+# number only
+false| 12345
+
+true| [123]
+true| [-0.123]
+true| [123e+111]
+true| [-1.00123e+111]
+true| [-1.00123E-111]
+
+# ================object====================
+# 0. general
+# void object
+true| {}
+
+# single pair
+true| { "string" : "string" }
+
+# muitl pairs
+true| { "string1" : "string1", "string2" : "string2"}
+
+# 1. about value
+# string value
+true| { "string" : "value"}
+
+# number value
+true| { "string" : 123 }
+
+# value null
+true| { "string" : null }
+
+# bool value
+true| { "string" : true }
+true| { "string" : false }
+
+# value object null
+true| { "string" : {} }
+
+# object value
+true| { "string" : { "string" : 123} }
+
+# array value
+true| { "string" : [1, 3] }
+
+# 2. about key
+# key null
+false| { null : "string" }
+
+# bool value
+false| { true : "string" }
+false| { false : "string" }
+
+# string key
+true| { "string" : "string"}
+true| { "" : "string" }
+
+# number key
+false| { 123 : "string" }
+
+# object key
+false| { { "string" : "value" } : "value" }
+
+# array key
+false| { [123] : "value" }
+
+# ========================array=======================
+# 0. general
+# void array
+true| []
+
+# single value
+true| [1]
+
+# multi values
+true| [1, 2]
+
+# 1. about value
+# number value
+true| [1]
+
+# string value
+true| ["string"]
+true| [""]
+
+# array value
+true| [[]]
+true| [ [1,2] ]
+
+# abject value
+true| [{}]
+true| [ {"string" : "value"} ]
+
