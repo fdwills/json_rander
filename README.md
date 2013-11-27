@@ -1,6 +1,8 @@
 # json-test
 
-json test cases
+1. json test cases
+2. dynamic json format(json builder)
+
 with ruby preinstall
 
 ## format json.txt
@@ -8,5 +10,8 @@ with ruby preinstall
     true| [test string]
     false| [test string]
 
-## run command
+## 1. json test cases
     ruby json_test.rb
+
+## 2. dynamic json format
+    ruby test.rb
