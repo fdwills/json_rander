@@ -21,7 +21,7 @@ open("json.txt") do |io|
   io.readlines.each { |line|
 
     # skip illegal lines
-    unless line.include?("\#") or line.eql?("\n")
+    unless line.nil? or line =~ /^[#\n]/ or (line =~ /^(true|false)/) == nil
       # spilt expected result and jsonformat
       (value, str) = line.split('|')
       value.chomp!

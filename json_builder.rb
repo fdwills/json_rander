@@ -75,12 +75,25 @@ module JsonBuilder
               ("0".."9").to_a +
               ["\\\\", "\\\"", "\\/", "\\n", "\\t", "\\b", "\\f", "\\r"].to_a
 
+    @@unicode_chars = ("0".."9").to_a +
+                      ("a".."f").to_a +
+                      ("A".."F").to_a
     def initialize
       @string = ""
 
       # get random string with max length limited
       string_length = Random.rand($MAX_RANDOM_LENGTH)
-      string_length.times { @string << @@chars.sample }
+      string_length.times do
+        case Random.rand(2)
+        when 0
+          # num/alp
+          @string << @@chars.sample
+        when 1
+          # unicode
+          @string << "\\u"
+          4.times { @string << @@unicode_chars.sample}
+        end
+      end
     end
 
     # to json string
