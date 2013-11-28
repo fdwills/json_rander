@@ -1,3 +1,5 @@
+require 'singleton'
+
 module JsonBuilder
 
   # nodes at num walking map
@@ -103,10 +105,9 @@ module JsonBuilder
     end
   end
 
-  # Json Num Builder
+  # Json Num Builder: singleton
   class JNumBuilder
-    # lazy
-    @@nodes = nil
+    include Singleton
 
     def initialize
       @nodes = { n0: JNumHead.new(:n1, :n2, :n3),
@@ -122,7 +123,7 @@ module JsonBuilder
                  n10: JNumMinus.new(:n11),
                  n11: JNumDigit.new(:n11, :n12),
                  n12: JNumTail.new
-               } if @@nodes.nil?
+               }
     end
 
     # get a valid json numer

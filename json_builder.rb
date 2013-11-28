@@ -123,15 +123,12 @@ module JsonBuilder
 
   # json num: build from JNumBuilder
   class JNum
-    @@builder = nil
     def initialize
-      if @@builder.nil?
-        @@builder = JNumBuilder.new
-      end
+      @builder = JNumBuilder.instance
     end
 
     def to_s
-      return @@builder.get_num.to_s
+      return @builder.get_num.to_s
     end
   end
 
