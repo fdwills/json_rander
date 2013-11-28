@@ -1,5 +1,6 @@
 require 'json'
 
+# json test function
 def json_valid?(str)
   JSON.parse(str)
   return true
@@ -7,24 +8,37 @@ rescue JSON::ParserError
   return false
 end
 
-$successed = 0
-$failed = 0
+# test main
+successed = 0
+failed = 0
 
+# load test file
+# file format: expected_result| json_format
+# #comment
+# [true|false]| json_format
+#
 open("json.txt") do |io|
   io.readlines.each { |line|
+
+    # skip illegal lines
     unless line.include?("\#") or line.eql?("\n")
+      # spilt expected result and jsonformat
       (value, str) = line.split('|')
       value.chomp!
+
+      # test
       test_value = value.eql?("true") ? true : false
       unless json_valid?(str).eql?(test_value)
-        $failed += 1
+        failed += 1
         puts value, str
         puts json_valid?(str)
       else
-        $successed += 1
+        successed += 1
       end
     end
   }
 end
-puts "success : ", $successed, "fail : ", $failed
+
+# print result
+puts "success : ", successed, "fail : ", failed
 
