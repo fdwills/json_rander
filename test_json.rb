@@ -18,7 +18,7 @@ failed = 0
 # [true|false]| json_format
 #
 open("json.txt") do |io|
-  io.readlines.each { |line|
+  io.readlines.each do |line|
 
     # skip illegal lines
     unless line.nil? or line =~ /^[#\n]/ or (line =~ /^(true|false)/) == nil
@@ -36,7 +36,7 @@ open("json.txt") do |io|
         successed += 1
       end
     end
-  }
+  end
 end
 
 # print result

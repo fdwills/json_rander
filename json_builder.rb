@@ -70,15 +70,16 @@ module JsonBuilder
 
   # json string: 0..9a..zA..z\n\r\t\b\f etc
   class JString
-    @@chars = ("a".."z").to_a +
+    def initialize
+      chars = ("a".."z").to_a +
               ("A".."Z").to_a +
               ("0".."9").to_a +
               ["\\\\", "\\\"", "\\/", "\\n", "\\t", "\\b", "\\f", "\\r"].to_a
 
-    @@unicode_chars = ("0".."9").to_a +
+      unicode_chars = ("0".."9").to_a +
                       ("a".."f").to_a +
                       ("A".."F").to_a
-    def initialize
+
       @string = ""
 
       # get random string with max length limited
@@ -87,11 +88,11 @@ module JsonBuilder
         case Random.rand(2)
         when 0
           # num/alp
-          @string << @@chars.sample
+          @string << chars.sample
         when 1
           # unicode
           @string << "\\u"
-          4.times { @string << @@unicode_chars.sample}
+          4.times { @string << unicode_chars.sample}
         end
       end
     end
@@ -104,9 +105,8 @@ module JsonBuilder
 
   # json special value: true/false/nil
   class JSpecialValue
-    @@values = [true, false, nil]
     def initialize
-      @value = @@values.sample
+      value = [true, false, nil].sample
     end
 
     def to_s
