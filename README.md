@@ -1,4 +1,4 @@
-# json-test
+# json-builder
 
 1. json test cases
 2. dynamic json format(json builder)
@@ -13,5 +13,5 @@ with ruby preinstall
 ## 1. json test cases
     ruby json_test.rb
 
-## 2. dynamic json format
+## 2. dynamic json format(json builder)
     ruby test.rb
