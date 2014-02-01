@@ -3,11 +3,11 @@ require 'json_rander/json_num_builder'
 module JsonRander
 
   # all values types
-  $TYPE = ["JsonBuilder::JObject",
-           "JsonBuilder::JArray",
-           "JsonBuilder::JString",
-           "JsonBuilder::JNum",
-           "JsonBuilder::JSpecialValue"]
+  $TYPE = ["JsonRander::JObject",
+           "JsonRander::JArray",
+           "JsonRander::JString",
+           "JsonRander::JNum",
+           "JsonRander::JSpecialValue"]
 
   # max length of random string/array/hash
   $MAX_RANDOM_LENGTH = 5
