@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/json_num_builder'
+require 'json_rander/json_num_builder'
 
-module JsonBuilder
+module JsonRander
 
   # all values types
   $TYPE = ["JsonBuilder::JObject",
@@ -133,16 +133,13 @@ module JsonBuilder
   end
 
   # correct json format builer
-  class JBuilder
-    def self.get_random
-      # object({ xx : yy}) or array[xx, yy]
-      case  Random.rand(2)
-      when 0
-        return JObject.new
-      when 1
-        return JArray.new
-      end
+  def self.get_random
+    # object({ xx : yy}) or array[xx, yy]
+    case  Random.rand(2)
+    when 0
+      return JObject.new
+    when 1
+      return JArray.new
     end
   end
-
 end #module

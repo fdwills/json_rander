@@ -1,6 +1,6 @@
 require 'singleton'
 
-module JsonBuilder
+module JsonRander
 
   # nodes at num walking map
   # ref: http://www.json.org/json-ja.html

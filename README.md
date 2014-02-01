@@ -1,17 +1,15 @@
-# json-builder
+# json-rander
+random json string builder
 
-1. json test cases
-2. dynamic json format(json builder)
+## install
+  include in Gemfile
 
-with ruby preinstall
+    gem 'json_rander'
 
-## format json.txt
-    # comment
-    true| [test string]
-    false| [test string]
+  install by bundle
 
-## 1. json test cases
-    ruby json_test.rb
+    bundle install
+## usage:
 
-## 2. dynamic json format(json builder)
-    ruby test.rb
+    require 'json_rander'
+    puts JsonRander.get_random
