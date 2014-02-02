@@ -143,4 +143,14 @@ module JsonRander
     end
   end
 
+  # json num: build from JNumBuilder
+  class JNum
+    def initialize
+      @builder = JNumBuilder.instance
+    end
+
+    def to_s
+      return @builder.get_num.to_s
+    end
+  end
 end #module
